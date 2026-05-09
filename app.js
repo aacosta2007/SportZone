@@ -1,165 +1,274 @@
-const products = [
-  {
-    name: "Camiseta Dry Move",
-    category: "Ropa",
-    price: 79900,
-    accent: "#00a8a8",
-    code: "DM",
-  },
-  {
-    name: "Legging Power Flex",
-    category: "Ropa",
-    price: 119900,
-    accent: "#ff6b5f",
-    code: "PF",
-  },
-  {
-    name: "Tenis Sprint X",
-    category: "Calzado",
-    price: 249900,
-    accent: "#b7ff2a",
-    code: "SX",
-  },
-  {
-    name: "Chaqueta Wind Pro",
-    category: "Ropa",
-    price: 169900,
-    accent: "#3b82f6",
-    code: "WP",
-  },
-  {
-    name: "Maleta Gym Core",
-    category: "Accesorios",
-    price: 99900,
-    accent: "#f59e0b",
-    code: "GC",
-  },
-  {
-    name: "Termo Active 750",
-    category: "Accesorios",
-    price: 49900,
-    accent: "#14b8a6",
-    code: "AT",
-  },
-  {
-    name: "Top Soporte Alto",
-    category: "Ropa",
-    price: 89900,
-    accent: "#ec4899",
-    code: "SA",
-  },
-  {
-    name: "Tenis Trail Grip",
-    category: "Calzado",
-    price: 279900,
-    accent: "#84cc16",
-    code: "TG",
-  },
+/**
+ * ================================================
+ * APLICACIÓN: AEROFIT - TIENDA VIRTUAL DE ROPA
+ * ================================================
+ * Archivo principal que orquesta todas las clases
+ * ================================================
+ */
+
+// ============ DATOS DEL CATÁLOGO ============
+const productosData = [
+  new Producto(1, "Camiseta Dry Move", 79900, "👕", "Ropa"),
+  new Producto(2, "Legging Power Flex", 119900, "🩳", "Ropa"),
+  new Producto(3, "Tenis Sprint X", 249900, "👟", "Calzado"),
+  new Producto(4, "Chaqueta Wind Pro", 169900, "🧥", "Ropa"),
+  new Producto(5, "Maleta Gym Core", 99900, "🎒", "Accesorios"),
+  new Producto(6, "Termo Active 750", 49900, "🥤", "Accesorios"),
+  new Producto(7, "Top Soporte Alto", 89900, "👙", "Ropa"),
+  new Producto(8, "Tenis Trail Grip", 279900, "🥾", "Calzado"),
 ];
 
-const formatter = new Intl.NumberFormat("es-CO", {
-  style: "currency",
-  currency: "COP",
-  maximumFractionDigits: 0,
-});
+// ============ INICIALIZACIÓN DE CLASES ============
+const tienda = new Tienda(productosData);
+const carrito = new Carrito();
+let usuarioActual = null;
+let facturaActual = null;
 
+// ============ REFERENCIAS AL DOM ============
 const productGrid = document.querySelector("#productGrid");
 const cartPanel = document.querySelector("#cartPanel");
 const cartItems = document.querySelector("#cartItems");
-const cartCount = document.querySelector("#cartCount");
-const cartTotal = document.querySelector("#cartTotal");
-const filters = document.querySelectorAll(".filter");
-const cart = [];
+const cartToggle = document.querySelector(".cart-toggle");
+const closCartBtn = document.querySelector(".close-cart");
+const contactForm = document.querySelector(".contact-form");
+const filtersContainer = document.querySelector(".filters");
 
-function renderProducts(category = "Todos") {
-  const visibleProducts =
-    category === "Todos"
-      ? products
-      : products.filter((product) => product.category === category);
+// Referencias para factura
+const facturaModal = document.querySelector("#facturaModal");
+const facturaContenedor = document.querySelector("#facturaContenedor");
+const btnFinalizarCompra = document.querySelector("#finalizarCompra");
+const btnDescargarFactura = document.querySelector("#btnDescargarFactura");
+const btnEnviarEmail = document.querySelector("#btnEnviarEmail");
+const btnImprimirFactura = document.querySelector("#btnImprimirFactura");
+const btnCerrarFactura = document.querySelector("#btnCerrarFactura");
 
-  productGrid.innerHTML = visibleProducts
-    .map(
-      (product, index) => `
-        <article class="product-card">
-          <div class="product-visual" style="--accent: ${product.accent}">
-            <span>${product.code}</span>
-          </div>
-          <div class="product-info">
-            <div class="product-top">
-              <div>
-                <h3>${product.name}</h3>
-                <span class="category">${product.category}</span>
-              </div>
-              <strong class="price">${formatter.format(product.price)}</strong>
-            </div>
-            <button class="button add-to-cart" type="button" data-index="${products.indexOf(product)}">
-              Agregar al carrito
-            </button>
-          </div>
-        </article>
-      `
-    )
-    .join("");
+// ============ FUNCIONES DE INTERFAZ ============
+
+/**
+ * Inicializa la tienda renderizando catálogo y filtros
+ */
+function inicializarTienda() {
+  tienda.renderizarCatalogo("Todos");
+  tienda.renderizarFiltros();
+  carrito.renderizar();
 }
 
-function renderCart() {
-  const total = cart.reduce((sum, product) => sum + product.price, 0);
-  cartCount.textContent = cart.length;
-  cartTotal.textContent = formatter.format(total);
-  cartItems.innerHTML = cart.length
-    ? cart
-        .map(
-          (product, index) => `
-            <article class="cart-line">
-              <div>
-                <strong>${product.name}</strong>
-                <small>${product.category}</small>
-              </div>
-              <span>${formatter.format(product.price)}</span>
-              <button class="close-cart" type="button" data-remove="${index}">Quitar</button>
-            </article>
-          `
-        )
-        .join("")
-    : "<p>Tu carrito esta vacio.</p>";
-}
+/**
+ * Configura los eventos de los filtros
+ */
+function configurarFiltros() {
+  document.addEventListener("click", (event) => {
+    const filterBtn = event.target.closest(".filter");
+    if (!filterBtn) return;
 
-filters.forEach((button) => {
-  button.addEventListener("click", () => {
-    filters.forEach((filter) => filter.classList.remove("active"));
-    button.classList.add("active");
-    renderProducts(button.dataset.category);
+    // Actualizar estado visual
+    document.querySelectorAll(".filter").forEach((btn) => btn.classList.remove("active"));
+    filterBtn.classList.add("active");
+
+    // Renderizar productos filtrados
+    const categoria = filterBtn.dataset.category;
+    tienda.renderizarCatalogo(categoria);
   });
-});
+}
 
-productGrid.addEventListener("click", (event) => {
-  const addButton = event.target.closest(".add-to-cart");
-  if (!addButton) return;
-  cart.push(products[Number(addButton.dataset.index)]);
-  renderCart();
-  cartPanel.classList.add("open");
-});
+/**
+ * Configura los eventos del carrito
+ */
+function configurarCarrito() {
+  // Evento: agregar producto al carrito
+  document.addEventListener("click", (event) => {
+    const addBtn = event.target.closest(".add-to-cart");
+    if (!addBtn) return;
 
-cartItems.addEventListener("click", (event) => {
-  const removeButton = event.target.closest("[data-remove]");
-  if (!removeButton) return;
-  cart.splice(Number(removeButton.dataset.remove), 1);
-  renderCart();
-});
+    const productoId = Number(addBtn.dataset.id);
+    const producto = tienda.obtenerProductoPorId(productoId);
 
-document.querySelector(".cart-toggle").addEventListener("click", () => {
-  cartPanel.classList.add("open");
-});
+    if (producto) {
+      carrito.agregarProducto(producto, 1);
+      carrito.renderizar();
+      cartPanel.classList.add("open");
+    }
+  });
 
-document.querySelector(".close-cart").addEventListener("click", () => {
+  // Evento: eliminar producto del carrito
+  document.addEventListener("click", (event) => {
+    const removeBtn = event.target.closest(".cart-btn-remove");
+    if (!removeBtn) return;
+
+    const productoId = Number(removeBtn.dataset.productoId);
+    carrito.eliminarProducto(productoId);
+    carrito.renderizar();
+  });
+
+  // Evento: abrir carrito
+  cartToggle.addEventListener("click", () => {
+    cartPanel.classList.add("open");
+  });
+
+  // Evento: cerrar carrito
+  closCartBtn.addEventListener("click", () => {
+    cartPanel.classList.remove("open");
+  });
+
+  // Evento: vaciar carrito
+  const vaciarBtn = document.querySelector("#vaciarCarrito");
+  if (vaciarBtn) {
+    vaciarBtn.addEventListener("click", () => {
+      if (carrito.obtenerCantidad() === 0) {
+        alert("El carrito ya está vacío");
+        return;
+      }
+
+      if (confirm("¿Estás seguro de que deseas vaciar todo el carrito?")) {
+        carrito.vaciarCarrito();
+        carrito.renderizar();
+      }
+    });
+  }
+
+  // Evento: finalizar compra
+  if (btnFinalizarCompra) {
+    btnFinalizarCompra.addEventListener("click", () => {
+      mostrarFactura();
+    });
+  }
+
+  // Eventos del modal de factura
+  if (btnCerrarFactura) {
+    btnCerrarFactura.addEventListener("click", () => {
+      cerrarFactura();
+    });
+  }
+
+  if (btnDescargarFactura) {
+    btnDescargarFactura.addEventListener("click", () => {
+      if (facturaActual) {
+        facturaActual.descargar();
+      }
+    });
+  }
+
+  if (btnEnviarEmail) {
+    btnEnviarEmail.addEventListener("click", () => {
+      if (facturaActual) {
+        const resultado = facturaActual.enviarEmail();
+        alert(resultado.mensaje);
+      }
+    });
+  }
+
+  if (btnImprimirFactura) {
+    btnImprimirFactura.addEventListener("click", () => {
+      window.print();
+    });
+  }
+}
+
+/**
+ * Configura el formulario de contacto
+ */
+function configurarFormulario() {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const nombre = event.currentTarget.querySelector('[name="nombre"]').value;
+    const email = event.currentTarget.querySelector('[name="correo"]').value;
+
+    // Crear usuario
+    usuarioActual = new Usuario(Date.now(), nombre, email);
+
+    alert(
+      `¡Gracias ${nombre}! Pronto recibirás una recomendación de talla de nuestros asesores.`
+    );
+
+    event.currentTarget.reset();
+  });
+}
+
+/**
+ * Muestra el modal de factura
+ */
+function mostrarFactura() {
+  if (carrito.obtenerCantidad() === 0) {
+    alert("El carrito está vacío. Agrega productos antes de finalizar.");
+    return;
+  }
+
+  // Si no hay usuario, crear uno genérico
+  if (!usuarioActual) {
+    usuarioActual = new Usuario(Date.now(), "Cliente", "cliente@aerofit.com");
+  }
+
+  // Crear factura
+  facturaActual = new Factura(usuarioActual, carrito);
+
+  // Renderizar factura en el modal
+  facturaContenedor.innerHTML = facturaActual.obtenerHTML();
+
+  // Mostrar modal
+  facturaModal.classList.add("open");
+
+  // Cerrar carrito
   cartPanel.classList.remove("open");
-});
+}
 
-document.querySelector(".contact-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  event.currentTarget.reset();
-  alert("Solicitud enviada. Pronto recibiras una recomendacion de talla.");
-});
+/**
+ * Cierra el modal de factura
+ */
+function cerrarFactura() {
+  facturaModal.classList.remove("open");
+}
 
-renderProducts();
-renderCart();
+/**
+ * Procesa la compra final
+ */
+function procesarCompra(metodoPago = "Tarjeta de Crédito") {
+  if (!facturaActual) {
+    alert("Error: No hay factura para procesar");
+    return;
+  }
+
+  const resultado = facturaActual.procesarPago(metodoPago);
+
+  if (resultado.exitoso) {
+    alert(
+      `✅ ${resultado.mensaje}\n\nFactura: ${resultado.numeroFactura}\n\nTu carrito ha sido vaciado.`
+    );
+
+    // Vaciar carrito
+    carrito.vaciarCarrito();
+    carrito.renderizar();
+
+    // Cerrar modal
+    cerrarFactura();
+
+    // Abrir carrito vacío
+    cartPanel.classList.add("open");
+  } else {
+    alert(`❌ Error: ${resultado.mensaje}`);
+  }
+}
+
+/**
+ * Configura los eventos de la factura
+ */
+function configurarFactura() {
+  // Cerrar modal clickeando fuera
+  facturaModal.addEventListener("click", (event) => {
+    if (event.target === facturaModal) {
+      cerrarFactura();
+    }
+  });
+}
+
+// ============ INICIALIZACIÓN DE LA APP ============
+document.addEventListener("DOMContentLoaded", () => {
+  inicializarTienda();
+  configurarFiltros();
+  configurarCarrito();
+  configurarFormulario();
+  configurarFactura();
+
+  console.log("✅ AeroFit tienda virtual cargada correctamente");
+  console.log("📄 Sistema de facturación integrado");
+});

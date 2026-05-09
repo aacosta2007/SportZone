@@ -1,0 +1,114 @@
+/* ============================================
+   COMPONENTE: PRODUCTO
+   Estilos para la tarjeta de producto
+   ============================================ */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 36px;
+}
+
+.product-card {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(20, 22, 26, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(20, 22, 26, 0.12);
+}
+
+.product-visual {
+  display: grid;
+  place-items: center;
+  min-height: 210px;
+  padding: 28px;
+  color: var(--dark);
+  background: linear-gradient(135deg, #eef3f7, #ffffff);
+}
+
+.product-visual span {
+  display: grid;
+  place-items: center;
+  width: 132px;
+  height: 132px;
+  border: 10px solid var(--accent);
+  border-radius: 999px;
+  font-size: 2.3rem;
+  font-weight: 900;
+  background: rgba(20, 22, 26, 0.05);
+}
+
+.product-info {
+  padding: 18px;
+}
+
+.product-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.product-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.category {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.price {
+  color: var(--teal);
+  font-weight: 900;
+  white-space: nowrap;
+  display: flex;
+  align-items: flex-start;
+}
+
+.product-info .button {
+  width: 100%;
+  margin-top: 16px;
+  background: var(--dark);
+  color: #fff;
+  border: none;
+  font-weight: 800;
+  padding: 0 18px;
+  min-height: 42px;
+}
+
+.product-info .button:hover {
+  background: var(--ink);
+  transform: scale(1.02);
+}
+
+/* Responsive para producto */
+@media (max-width: 1020px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-visual span {
+    width: 100px;
+    height: 100px;
+    font-size: 1.8rem;
+  }
+}

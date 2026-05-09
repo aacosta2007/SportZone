@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AeroFit | Tienda virtual de ropa deportiva</title>
+    <!-- Estilos principales -->
     <link rel="stylesheet" href="styles.css" />
+    <!-- Estilos por componente -->
+    <link rel="stylesheet" href="styles-producto.css" />
+    <link rel="stylesheet" href="styles-carrito.css" />
+    <link rel="stylesheet" href="styles-tienda.css" />
+    <link rel="stylesheet" href="styles-factura.css" />
   </head>
   <body>
     <header class="site-header">
@@ -132,14 +138,46 @@
         <span>Total</span>
         <strong id="cartTotal">$0</strong>
       </div>
-      <button class="button primary full" type="button">Finalizar compra</button>
+      <div class="cart-actions">
+        <button class="button primary full" type="button" id="finalizarCompra">Finalizar compra</button>
+        <button class="button secondary full" type="button" id="vaciarCarrito">Vaciar carrito</button>
+      </div>
     </aside>
+
+    <!-- Modal de Factura -->
+    <div class="factura-modal" id="facturaModal">
+      <div class="factura-modal-content">
+        <div id="facturaContenedor"></div>
+        <div class="factura-acciones">
+          <button class="factura-btn primario" id="btnDescargarFactura">
+            📥 Descargar PDF
+          </button>
+          <button class="factura-btn secundario" id="btnEnviarEmail">
+            📧 Enviar por Email
+          </button>
+          <button class="factura-btn secundario" id="btnImprimirFactura">
+            🖨️ Imprimir
+          </button>
+          <button class="factura-btn cerrar" id="btnCerrarFactura">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <span>AeroFit tienda virtual</span>
       <span>Maquetacion para trabajo de clase</span>
     </footer>
 
+    <!-- Scripts: Clases (Models) -->
+    <script src="Models/Producto.js"></script>
+    <script src="Models/Carrito.js"></script>
+    <script src="Models/Tienda.js"></script>
+    <script src="Models/Usuario.js"></script>
+    <script src="Models/Factura.js"></script>
+
+    <!-- Script principal -->
     <script src="app.js"></script>
   </body>
 </html>
