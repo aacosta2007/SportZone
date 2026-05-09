@@ -1,4 +1,4 @@
-# AeroFit - Tienda virtual de ropa deportiva
+# SportZone - Tienda virtual de ropa deportiva
 
 Maquetacion web estatica para trabajo de clase. El proyecto representa una
 tienda virtual de ropa deportiva con catalogo, filtros, carrito visual y

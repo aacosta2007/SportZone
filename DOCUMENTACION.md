@@ -1,7 +1,7 @@
-# 🏋️ AeroFit - Tienda Virtual de Ropa Deportiva
+# 🏋️ SportZone - Tienda Virtual de Ropa Deportiva
 
 ## Descripción
-AeroFit es una tienda virtual de ropa deportiva construida con **Programación Orientada a Objetos (POO)** en JavaScript vanilla. El proyecto implementa clases bien estructuradas, separación de responsabilidades y una interfaz responsive.
+SportZone es una tienda virtual de ropa deportiva construida con **Programación Orientada a Objetos (POO)** en JavaScript vanilla. El proyecto implementa clases bien estructuradas, separación de responsabilidades y una interfaz responsive.
 
 ---
 

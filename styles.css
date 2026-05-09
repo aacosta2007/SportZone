@@ -341,6 +341,18 @@ h2 {
   color: #d7dde4;
 }
 
+.benefits-list {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding-left: 20px;
+  color: #d7dde4;
+}
+
+.benefits-list li::marker {
+  color: var(--lime);
+}
+
 .metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
