@@ -11,16 +11,12 @@ class Producto {
     this.categoria = categoria;
   }
 
-  /**
-   * Retorna la información del producto formateada
-   */
+  
   mostrarInfo() {
     return `${this.nombre} - ${this.precio} COP (${this.categoria})`;
   }
 
-  /**
-   * Obtiene el HTML de la tarjeta del producto
-   */
+  
   obtenerHTML() {
     const formatter = new Intl.NumberFormat("es-CO", {
       style: "currency",
