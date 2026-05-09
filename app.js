@@ -1,6 +1,6 @@
 /**
  * ================================================
- * APLICACIÓN: AEROFIT - TIENDA VIRTUAL DE ROPA
+ * APLICACIÓN: SPORTZONE - TIENDA VIRTUAL DE ROPA
  * ================================================
  * Archivo principal que orquesta todas las clases
  * ================================================
@@ -196,7 +196,7 @@ function mostrarFactura() {
 
   // Si no hay usuario, crear uno genérico
   if (!usuarioActual) {
-    usuarioActual = new Usuario(Date.now(), "Cliente", "cliente@aerofit.com");
+    usuarioActual = new Usuario(Date.now(), "Cliente", "cliente@sportzone.com");
   }
 
   // Crear factura
@@ -269,6 +269,6 @@ document.addEventListener("DOMContentLoaded", () => {
   configurarFormulario();
   configurarFactura();
 
-  console.log("✅ AeroFit tienda virtual cargada correctamente");
+  console.log("✅ SportZone tienda virtual cargada correctamente");
   console.log("📄 Sistema de facturación integrado");
 });

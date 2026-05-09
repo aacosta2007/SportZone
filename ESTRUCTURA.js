@@ -1,6 +1,6 @@
 /**
  * ================================================
- * GUÍA DE ESTRUCTURA DEL PROYECTO AEROFIT
+ * GUÍA DE ESTRUCTURA DEL PROYECTO SPORTZONE
  * ================================================
  * Este archivo explica la organización de cada
  * archivo y su responsabilidad específica

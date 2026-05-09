@@ -65,8 +65,8 @@ class Factura {
       <div class="factura-container">
         <div class="factura-header">
           <div class="factura-logo">
-            <span class="brand-mark-factura">AF</span>
-            <h1>AeroFit</h1>
+            <span class="brand-mark-factura">SZ</span>
+            <h1>SportZone</h1>
           </div>
           <div class="factura-titulo">
             <h2>FACTURA DE VENTA</h2>
@@ -83,11 +83,11 @@ class Factura {
             <p><strong>ID:</strong> ${this.usuario.id}</p>
           </div>
           <div class="factura-empresa">
-            <h3>AeroFit S.A.S</h3>
+            <h3>SportZone S.A.S</h3>
             <p>NIT: 900.123.456-7</p>
             <p>Dirección: Calle 123 #45-67</p>
             <p>Teléfono: +57 1 2345678</p>
-            <p>Email: ventas@aerofit.com</p>
+            <p>Email: ventas@sportzone.com</p>
           </div>
         </div>
 
@@ -127,12 +127,12 @@ class Factura {
             <li>Conserve esta factura como comprobante de compra</li>
             <li>La garantía de los productos es de 12 meses desde la fecha de compra</li>
             <li>Para cambios o devoluciones, consulte nuestras políticas</li>
-            <li>Gracias por su compra en AeroFit</li>
+            <li>Gracias por su compra en SportZone</li>
           </ul>
         </div>
 
         <div class="factura-pie">
-          <p>Esta es una factura electrónica válida - AeroFit © 2024</p>
+          <p>Esta es una factura electrónica válida - SportZone © 2024</p>
         </div>
       </div>
     `;

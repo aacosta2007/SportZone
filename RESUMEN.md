@@ -1,4 +1,4 @@
-# 📦 Resumen de la Refactorización - AeroFit
+# 📦 Resumen de la Refactorización - SportZone
 
 ## ✅ Lo que se ha completado
 

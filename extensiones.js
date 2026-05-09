@@ -10,7 +10,7 @@
 // ============ EJEMPLO 1: GUARDAR CARRITO EN LOCALSTORAGE ============
 
 class CarritoConPersistencia extends Carrito {
-  constructor(nombreLlave = "carrito_aerofit") {
+  constructor(nombreLlave = "carrito_sportzone") {
     super();
     this.nombreLlave = nombreLlave;
     this.cargarDelLocal();
