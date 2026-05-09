@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SportZone | Tienda virtual de ropa deportiva</title>
     <!-- Estilos principales -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
     <!-- Estilos por componente -->
-    <link rel="stylesheet" href="styles-producto.css" />
-    <link rel="stylesheet" href="styles-carrito.css" />
-    <link rel="stylesheet" href="styles-tienda.css" />
-    <link rel="stylesheet" href="styles-factura.css" />
+    <link rel="stylesheet" href="styles/styles-producto.css" />
+    <link rel="stylesheet" href="styles/styles-carrito.css" />
+    <link rel="stylesheet" href="styles/styles-tienda.css" />
+    <link rel="stylesheet" href="styles/styles-factura.css" />
   </head>
   <body>
     <header class="site-header">
@@ -29,7 +29,7 @@
     </header>
 
     <main>
-      <section class="hero" id="inicio" aria-label="Presentacion de la tienda">
+      <section class="hero" id="inicio" aria-label="Presentacion de la tienda" style="background-image: url('assets/hero-sportswear.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <div class="hero-content">
           <p class="eyebrow">Ropa deportiva para entrenar mejor</p>
           <h1>SportZone</h1>
@@ -168,8 +168,38 @@
     </div>
 
     <footer class="site-footer">
-      <span>SportZone tienda virtual</span>
-      <span>Ropa deportiva, pagos flexibles y entregas rapidas</span>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>SportZone</h3>
+          <p>Tienda virtual de ropa deportiva para entrenar mejor. Camisetas transpirables, leggings y accesorios para running, gimnasio y más.</p>
+          <address>
+            Dirección: Calle 10 # 5-20, Centro, Medellín, Colombia<br>
+            Teléfono: +57 300 123 4567<br>
+            Email: contacto@sportzone.com
+          </address>
+        </div>
+        <div class="footer-section">
+          <h3>Redes Sociales</h3>
+          <ul>
+            <li><a href="https://facebook.com/sportzone" target="_blank">Facebook</a></li>
+            <li><a href="https://instagram.com/sportzone" target="_blank">Instagram</a></li>
+            <li><a href="https://twitter.com/sportzone" target="_blank">Twitter</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Políticas y Legal</h3>
+          <ul>
+            <li><a href="#politica-privacidad">Política de Privacidad</a></li>
+            <li><a href="#terminos-servicio">Términos de Servicio</a></li>
+            <li><a href="#politica-devoluciones">Política de Devoluciones</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 SportZone. Todos los derechos reservados.</p>
+        <p>Desarrollado con ❤️ en Medellín</p>
+      </div>
     </footer>
 
     <!-- Scripts: Clases (Models) -->
