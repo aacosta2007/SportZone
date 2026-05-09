@@ -23,13 +23,13 @@ SPORTZONE/
 │   └─ Footer
 │
 ├── 🎨 CSS (5 archivos)
-│   ├─ styles.css
+│   ├─ styles/styles.css
 │   │  └─ Variables, header, hero, footer, etc.
-│   ├─ styles-producto.css
+│   ├─ styles/styles-producto.css
 │   │  └─ Grid de productos, tarjetas, hover effects
-│   ├─ styles-carrito.css
+│   ├─ styles/styles-carrito.css
 │   │  └─ Panel lateral, items, botones
-│   ├─ styles-tienda.css
+│   ├─ styles/styles-tienda.css
 │   │  └─ Filtros, categorías, responsive
 │   └─ (Todos son responsivos)
 │

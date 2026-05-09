@@ -11,10 +11,10 @@ AeroFit es una tienda virtual de ropa deportiva construida con **Programación O
 SportZone/
 ├── 📄 index.html              # Estructura HTML principal
 ├── 📄 app.js                  # Archivo de orquestación (main)
-├── 📄 styles.css              # Estilos globales
-├── 📄 styles-producto.css     # Estilos del componente Producto
-├── 📄 styles-carrito.css      # Estilos del componente Carrito
-├── 📄 styles-tienda.css       # Estilos del componente Tienda
+├── 📄 styles/styles.css       # Estilos globales
+├── 📄 styles/styles-producto.css     # Estilos del componente Producto
+├── 📄 styles/styles-carrito.css      # Estilos del componente Carrito
+├── 📄 styles/styles-tienda.css       # Estilos del componente Tienda
 ├── 📁 assets/                 # Imágenes y recursos
 └── 📁 Models/                 # Clases POO
     ├── Producto.js            # Clase Producto

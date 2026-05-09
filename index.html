@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AeroFit | Tienda virtual de ropa deportiva</title>
     <!-- Estilos principales -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
     <!-- Estilos por componente -->
-    <link rel="stylesheet" href="styles-producto.css" />
-    <link rel="stylesheet" href="styles-carrito.css" />
-    <link rel="stylesheet" href="styles-tienda.css" />
-    <link rel="stylesheet" href="styles-factura.css" />
+    <link rel="stylesheet" href="styles/styles-producto.css" />
+    <link rel="stylesheet" href="styles/styles-carrito.css" />
+    <link rel="stylesheet" href="styles/styles-tienda.css" />
+    <link rel="stylesheet" href="styles/styles-factura.css" />
   </head>
   <body>
     <header class="site-header">
@@ -165,9 +165,46 @@
       </div>
     </div>
 
-    <footer class="site-footer">
-      <span>AeroFit tienda virtual</span>
-      <span>Maquetacion para trabajo de clase</span>
+    <footer class="site-footer" aria-label="Pie de página AeroFit">
+      <div class="footer-section footer-brand">
+        <a class="brand" href="#inicio" aria-label="Ir al inicio de AeroFit">AeroFit</a>
+        <p>Moda deportiva, entrenamiento y vida activa desde Medellín, Antioquia. Diseñamos cada experiencia pensando en tu comodidad y tu estilo.</p>
+      </div>
+
+      <div class="footer-section footer-nav">
+        <h3>Navegación</h3>
+        <ul>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#inicio">Inicio</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section footer-contact">
+        <h3>Contáctanos</h3>
+        <p>Cra. 43B #10-50, El Poblado, Medellín</p>
+        <p>Tel: +57 4 123 4567</p>
+        <p>Email: contacto@aerofit.co</p>
+      </div>
+
+      <div class="footer-section footer-info">
+        <h3>Información útil</h3>
+        <ul>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Términos y condiciones</a></li>
+          <li><a href="#">Devoluciones y envíos</a></li>
+        </ul>
+        <div class="footer-social" aria-label="Redes sociales AeroFit">
+          <a href="#" aria-label="Instagram AeroFit">Instagram</a>
+          <a href="#" aria-label="Facebook AeroFit">Facebook</a>
+          <a href="#" aria-label="WhatsApp AeroFit">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="footer-credits">
+        <p>© 2026 AeroFit. Tienda virtual especializada en ropa deportiva de alta calidad en Medellín.</p>
+      </div>
     </footer>
 
     <!-- Scripts: Clases (Models) -->
